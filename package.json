@@ -1,0 +1,20 @@
+{
+  "name": "qa-cypress-framework-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.7.1",
+    "eslint-plugin-cypress": "^2.15.1"
+  },
+  "dependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2"
+  }
+}
