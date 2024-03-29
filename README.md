@@ -92,8 +92,6 @@ https://www.demoblaze.com/
 * It embeds the screenshots of tests on failure automatically to the report, and also attaches the videos to report. 
 * It also allows the customization of report with better control of how and where report is generated.
 * This is how the report dashboard looks like:
-  
-<img src="doc/mochaawesome-report-overview.PNG">
 
 * Some ther reporting possibilities are:
   * [mochawesome](https://www.npmjs.com/package/mochawesome)
