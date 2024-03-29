@@ -6,17 +6,17 @@ describe('Filter by category feature', () => {
         cy.visit('/')
       })
 
-    it('FE | Filter by phones', () => {
+    it('TC-009: FE | Filter by phones', () => {
         cy.contains('Phones').click();
         cy.get('#tbodyid').should('be.visible');
         cy.screenshot();
     })
-    it('FE | Filter by laptops', () => {
+    it('TC-010: FE | Filter by laptops', () => {
         cy.contains('Laptops').click();
         cy.get('#tbodyid').should('be.visible');
         cy.screenshot();
     })
-    it('FE | Filter by monitors', () => {
+    it('TC-011: FE | Filter by monitors', () => {
         cy.contains('Monitors').click();
         cy.get('#tbodyid').should('be.visible');
         cy.screenshot();

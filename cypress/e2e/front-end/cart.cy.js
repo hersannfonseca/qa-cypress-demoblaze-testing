@@ -9,11 +9,11 @@ describe('Cart feature', () => {
     cy.get('#cartur').click();
   })
 
-  it('FE | Add new product to cart', () => {
+  it('TC-007: FE | Add new product to cart', () => {
     cy.get('.success > :nth-child(1) > img').should('be.visible')
     cy.screenshot()
   })
-  it('BE | Delete product from the cart', () => {
+  it('TC-008: BE | Delete product from the cart', () => {
     cy.get('.success > :nth-child(4) > a').click();
     cy.get('.success > :nth-child(1) > img').should('not.exist');
     cy.screenshot()

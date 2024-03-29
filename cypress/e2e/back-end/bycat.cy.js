@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Filter by category feature', () => {
-    it("BE | Filter products by phone category", () => {
+    it("TC-004: BE | Filter products by phone category", () => {
       cy.request('POST', 'https://api.demoblaze.com/bycat', {cat:"phone"}).then(
         (response) => {
           expect(response.status).to.eq(200);
@@ -10,7 +10,7 @@ describe('Filter by category feature', () => {
         }
       )
     });
-    it("BE | Filter products by notebook category", () => {
+    it("TC-005: BE | Filter products by notebook category", () => {
         cy.request('POST', 'https://api.demoblaze.com/bycat', {cat:"notebook"}).then(
           (response) => {
             expect(response.status).to.eq(200);
@@ -19,7 +19,7 @@ describe('Filter by category feature', () => {
           }
         )
       });
-      it("BE | Filter products by monitor category", () => {
+      it("TC-006: BE | Filter products by monitor category", () => {
         cy.request('POST', 'https://api.demoblaze.com/bycat', {cat:"monitor"}).then(
           (response) => {
             expect(response.status).to.eq(200);
