@@ -9,6 +9,7 @@ pipeline {
         stage('dependencies') {
             steps {
                 sh 'npm i'
+                
             }
         }
         stage('cypress parallel tests') {
