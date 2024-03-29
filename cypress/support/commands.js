@@ -8,6 +8,9 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
+import { validateSchema } from "./validate-schema-command";
+
+Cypress.Commands.add("validateSchema", validateSchema);
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
