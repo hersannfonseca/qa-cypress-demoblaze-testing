@@ -11,11 +11,11 @@ describe('Cart feature', () => {
 
   it('TC-007: FE | Add new product to cart', () => {
     cy.get('.success > :nth-child(1) > img').should('be.visible')
-    cy.screenshot()
+    cy.screenshot();
   })
-  it('TC-008: BE | Delete product from the cart', () => {
+  it('TC-008: FE | Delete product from the cart', () => {
     cy.get('.success > :nth-child(4) > a').click();
     cy.get('.success > :nth-child(1) > img').should('not.exist');
-    cy.screenshot()
+    cy.screenshot();
   })
 });
