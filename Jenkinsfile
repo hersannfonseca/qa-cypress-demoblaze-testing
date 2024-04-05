@@ -1,36 +1,25 @@
 pipeline {
-    agent any
-
-    triggers {
-        cron('H 8 * * *')
+  agent {
+    // this image provides everything needed to run Cypress
+    docker {
+      image 'cypress/base:20.9.0'
     }
+  }
 
-    stages {
-        stage('dependencies') {
-            steps {
-                sh 'npm i'
-            }
-        }
-        stage('cypress parallel tests') {
-            environment {
-                CYPRESS_RECORD_KEY = credentials('cypress-example-record-key')
-                CYPRESS_PROJECT_ID = credentials('cypress-example-project-id')
-                CYPRESS_trashAssetsBeforeRuns = 'false'
-            }
+  stages {
+    stage('build and test') {
+      environment {
+        // we will be recording test results on Cypress Cloud
+        // to record we need to set an environment variable
+        // we can load the record key variable from credentials store
+        // see https://jenkins.io/doc/book/using/using-credentials/
+        CYPRESS_RECORD_KEY = credentials('cypress-example-kitchensink-record-key')
+      }
 
-            parallel {
-                stage('machine 1') {
-                    steps {
-                        sh "npm run cy:ci"
-                    }
-                }
-
-                stage('machine 2') {
-                    steps {
-                        sh "npm run cy:ci"
-                    }
-                }
-            }
-        }
+      steps {
+        sh 'npm install'
+        sh "npm run cy:run"
+      }
     }
+  }
 }
