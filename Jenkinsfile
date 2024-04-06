@@ -1,25 +1,32 @@
 pipeline {
-  agent {
-    // this image provides everything needed to run Cypress
-    docker {
-      image 'cypress/base:20.9.0'
+    agent any
+    stages {
+        stage('Git Checkout') {
+            steps {
+                script {
+                    git branch: 'main',
+                        url: 'https://github.com/hersannfonseca/qa-cypress-demoblaze-testing'
+                }
+            }
+        }
+        stage('Install dependencies') {
+            steps {
+                script {
+                    bat 'npm install'
+                }
+            }
+        }
+        stage('Run tests') {
+            steps {
+                script {
+                    bat 'npm run cy:run-ci'
+                }
+            }
+        }
     }
-  }
-
-  stages {
-    stage('build and test') {
-      environment {
-        // we will be recording test results on Cypress Cloud
-        // to record we need to set an environment variable
-        // we can load the record key variable from credentials store
-        // see https://jenkins.io/doc/book/using/using-credentials/
-        CYPRESS_RECORD_KEY = credentials('cypress-example-kitchensink-record-key')
-      }
-
-      steps {
-        sh 'npm install'
-        sh "npm run cy:run"
-      }
+    post {
+        always {
+            archiveArtifacts artifacts: 'cypress/reports/**'
+        }
     }
-  }
 }
