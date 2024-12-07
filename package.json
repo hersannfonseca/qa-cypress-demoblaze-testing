@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/eslint-plugin-dev": "^6.0.0",
     "cypress": "^13.7.1",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
