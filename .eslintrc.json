@@ -1,8 +1,6 @@
 {
-    "plugins": [
-        "@cypress/eslint-plugin-dev"
-    ],
-    "extends": [
-        "plugin:@cypress/dev/general"
-    ]
+    "extends": ["plugin:cypress/recommended", "standard"],
+    "env": {
+        "cypress/globals": true
+    }
 }
