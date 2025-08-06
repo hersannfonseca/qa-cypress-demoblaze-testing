@@ -11,15 +11,23 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                nodejs(NodeJS_Installation_Name: 'NodeJS-18') {
-                    bat 'npm install'
+                nodejs(nodeJSInstallationName: 'NodeJS-18') {
+                    if (isUnix()) {
+                        sh 'npm install'
+                    } else {
+                        bat 'npm install'
+                    }
                 }
             }
         }
         stage('Run tests') {
             steps {
-                script {
-                    bat 'npm run cy:run-ci'
+                nodejs(nodeJSInstallationName: 'NodeJS-18') {
+                    if (isUnix()) {
+                        sh 'npm run cy:run-ci'
+                    } else {
+                        bat 'npm run cy:run-ci'
+                    }
                 }
             }
         }
