@@ -11,10 +11,7 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                nodejs(NodeJS_Installation_Name: 'NodeJS-18') { // Usa el nombre que le diste en el paso 3
-                    sh 'npm install'
-                }
-                script {
+                nodejs(NodeJS_Installation_Name: 'NodeJS-18') {
                     bat 'npm install'
                 }
             }
