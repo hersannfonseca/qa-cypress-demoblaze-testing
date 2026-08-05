@@ -5,8 +5,8 @@ module.exports = defineConfig({
   projectId: 'hs3g2w',
 
   reporter: 'cypress-mochawesome-reporter',
-  
-  trashAssetsBeforeRuns: true,   //Whether Cypress will trash assets within the downloadsFolder, screenshotsFolder, and videosFolder before tests run with cypress run.
+
+  trashAssetsBeforeRuns: true,
 
   //Folders/ Files
   downloadsFolder: 'cypress/downloads',
@@ -14,18 +14,31 @@ module.exports = defineConfig({
 
   //Screenshots
   screenshotsFolder: 'cypress/screenshots',
-  screenshotOnRunFailure: true,  //Whether Cypress will take a screenshot when a test fails during cypress run.
+  screenshotOnRunFailure: true,
 
   //Videos
-  video: true,            //Whether Cypress will capture a video of the tests run with cypress run.
+  video: true,
   videosFolder: 'cypress/videos',
-  videoCompression: false,            //The quality setting for the video compression, in Constant Rate Factor (CRF). 
+  videoCompression: false,
 
   e2e: {
     baseUrl: 'https://www.demoblaze.com',
-    
+
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
+
+      // --- AGREGAR DESDE AQUÍ ---
+      on('before:browser:launch', (browser = {}, launchOptions) => {
+        if (browser.family === 'chromium' || browser.name === 'electron') {
+          launchOptions.args.push('--disable-gpu');
+          launchOptions.args.push('--disable-dev-shm-usage');
+          launchOptions.args.push('--no-sandbox');
+        }
+        return launchOptions;
+      });
+      // --- HASTA AQUÍ ---
+
+      return config;
     },
   },
 });
